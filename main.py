@@ -26,6 +26,9 @@ for i in range(10):
 
 
 ### Calculate Vid & Xid
+##      new_vid = w * vid + c1 * rnd() * (pbest_xid - xid)  + c2 * rnd() * (gbest_xd-xid)
+##      new_xid = xid + new_vid
+
 for i in range(10):
     # pbest
     pbest_pl1 = data[i].iloc[:, 0].reset_index()  
@@ -34,8 +37,10 @@ for i in range(10):
     # gbest
     gbest_score_cycle = data[i]['3dmarkscore'].max()  # max score in cycle
     gbest_score = np.where(gbest_score_cycle > gbest_score, gbest_score_cycle, gbest_score)  # update gbest score
+    
     if gbest_score == gbest_score_cycle:  # row of gbest 
         gbest = data[i].loc[data[i]['3dmarkscore'] == gbest_score]
+        
     gbest_pl1 = gbest.iloc[:,0].reset_index().iloc[0,1]
     gbest_pl4 = gbest.iloc[:,3].reset_index().iloc[0,1]
 
